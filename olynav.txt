@@ -22,7 +22,31 @@ class node {
     return false;
   }
 }
+function drawNode(n, index) {
+  pen.fillStyle="rgb(100,0,0)";
+  if(n.isStart) {
+    pen.fillStyle="rgb(0,255,0)";
+  }
+  if(n.isGoal) {
+    pen.fillStyle="rgb(255,0,0)";
+  }
+  pen.beginPath();
+  pen.ellipse(n.x,n.y,16,16,0,0,Math.PI*2);
+  //pen.fillText(index,n.y,n.y);
+  pen.fill();
+}
 function h_cost(n,sum) {
   if(n.isStart) {return sum;}
   return sum+h_cost(n.parent,n.distTo(n.parent));
 }
+var canvas = document.getElementById('canvas');
+var pen = canvas.getContext('2d');
+
+var datas = [];
+
+var numOfClasses=prompt("Number of nodes: ");
+
+var onKey=0;
+
+var n = new node(50,100,false,false);
+drawNode(n,1);
