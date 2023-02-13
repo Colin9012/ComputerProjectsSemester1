@@ -32,7 +32,7 @@ function drawNode(n, index) {
   }
   pen.beginPath();
   pen.ellipse(n.x,n.y,16,16,0,0,Math.PI*2);
-  //pen.fillText(index,n.y,n.y);
+  pen.fillText(index,n.x+20,n.y);
   pen.fill();
 }
 function h_cost(n,sum) {
@@ -50,3 +50,31 @@ var onKey=0;
 
 var n = new node(50,100,false,false);
 drawNode(n,1);
+function mousePressed(e) {
+  datas.push(new node(e.clientX,e.clientY));
+  
+  for(var i=0;i<datas.length;i++) {
+    drawNode(datas[i], i);
+  }
+}
+document.addEventListener("keydown", (event) => {
+  if(event.key=="q" && datas.length==numOfClasses) {
+    datas[0].isStart=true;
+    datas[datas.length-1].isGoal=true;
+    for(var i=0;i<datas.length;i++) {
+      var neighbors = prompt("Neighbors for "+i+": ").split(',').map(x => datas[x]);
+      datas[i].connecions=neighbors;
+    }
+    var open = [];
+    var closed = [];
+    const goal = datas[datas.length-1];
+    open.push(datas[0]);
+    
+    while(open.length!=0) {
+      var f_costs = [];
+      for(var i=0;i<datas.length;i++) {
+        
+      }
+    }
+  }
+});
