@@ -48,8 +48,7 @@ var numOfClasses=prompt("Number of nodes: ");
 
 var onKey=0;
 
-var n = new node(50,100,false,false);
-drawNode(n,1);
+
 function mousePressed(e) {
   datas.push(new node(e.clientX,e.clientY));
   
@@ -63,7 +62,7 @@ document.addEventListener("keydown", (event) => {
     datas[datas.length-1].isGoal=true;
     for(var i=0;i<datas.length;i++) {
       var neighbors = prompt("Neighbors for "+i+": ").split(',').map(x => datas[x]);
-      datas[i].connecions=neighbors;
+      datas[i].connections=neighbors;
     }
     var open = [];
     var closed = [];
@@ -71,10 +70,49 @@ document.addEventListener("keydown", (event) => {
     open.push(datas[0]);
     
     while(open.length!=0) {
+
       var f_costs = [];
-      for(var i=0;i<datas.length;i++) {
+      for(var i=0;i<open.length;i++) {
+        f_costs[i]=open[i].f_cost(goal);
+      }
+      var currentNode=open[getSmallestIndex(f_costs)];
+      open.splice(getSmallestIndex(f_costs));
+      closed.push(currentNode);
+      if(currentNode.isGoal) {
+        console.log("Found goal!");
+        raceToBottom(currentNode);
+        break;
         
+      }
+      
+      for(var i=0;i<currentNode.connections.length;i++) {
+        var n = currentNode.connections[i];
+        if(closed.filter(function(e){return e.x==n.x&&e.y==n.y;}).length>0) {
+          continue;
+        }
+        if(open.filter(function(ee){return ee.x==n.x&&ee.y==n.y;}).length<1) {
+          n.parent=currentNode;
+          open.push(n);
+
+        }
       }
     }
   }
 });
+function getSmallestIndex(n) {
+  var min=0;
+  for(var i=0;i<n.length;i++) {
+    if(n[i]<n[min]) {
+      min=i;
+    }
+  }
+  return min;
+}
+function raceToBottom(n) {
+  if(n.isStart) {return n;}
+  pen.beginPath();
+  pen.moveTo(n.x,n.y);
+  pen.lineTo(n.parent.x,n.parent.y);
+  pen.stroke();
+  return raceToBottom(n.parent);
+}
