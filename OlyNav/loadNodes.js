@@ -1,0 +1,15 @@
+nodes.set("a0", [60,60]);
+nodes.set("a1", [145,60]);
+nodes.set("a2", [60,104]);
+nodes.set("a3", [144,104]);
+nodes.set("a4", [31,184]);
+nodes.set("a5", [63,184]);
+nodes.set("a6", [143,184]);
+nodes.set("a7", [31,226]);
+nodes.set("a8", [62,226]);
+nodes.set("a9", [144,226]);
+nodes.set("a10", [168,226]);
+nodes.set("a11", [213,227]);
+nodes.set("a12", [210,188]);
+nodes.set("a13", [179,156]);
+nodes.set("a14", [144,156]);

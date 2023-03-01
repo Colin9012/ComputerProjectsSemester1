@@ -1,0 +1,15 @@
+neighbors.set("a0", ["a1","a2"]);
+neighbors.set("a1", ["a0","a3"]);
+neighbors.set("a2", ["a0","a3","a5"]);
+neighbors.set("a3", ["a1","a2","a14"]);
+neighbors.set("a4", ["a5"]);
+neighbors.set("a5", ["a2","a4","a6","a8"]);
+neighbors.set("a6", ["a5","a9","a14"]);
+neighbors.set("a7", ["a8"]);
+neighbors.set("a8", ["a5","a7","a9"]);
+neighbors.set("a9", ["a6","a8","a10"]);
+neighbors.set("a10", ["a9","a11"]);
+neighbors.set("a11", ["a10","a12"]);
+neighbors.set("a12", ["a11","a13"]);
+neighbors.set("a13", ["a12","a14"]);
+neighbors.set("a14", ["a3","a13","a6"]);
